@@ -15,11 +15,13 @@ public class BITMiniCC {
 	public static void main(String[] args) throws Exception {
 		//System.out.println(System.getProperty("user.dir"));
 		
+
+		String file = "";
 		if(args.length < 1){
-			usage();
-			return;
+			file = "test.c";
+		} else {
+			file = args[0];
 		}
-		String file = args[0];
 		if(file.indexOf(".c") < 0){
 			System.out.println("Incorrect input file:" + file);
 			return;

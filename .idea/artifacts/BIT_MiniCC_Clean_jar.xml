@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="BIT-MiniCC-Clean:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/BIT_MiniCC_Clean_jar</output-path>
+    <root id="archive" name="BIT-MiniCC-Clean.jar">
+      <element id="module-output" name="BIT-MiniCC-Clean" />
+    </root>
+  </artifact>
+</component>
