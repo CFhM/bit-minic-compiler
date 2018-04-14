@@ -7,6 +7,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import bit.minisys.minicc.pp.MiniCCPreProcessor;
+import bit.minisys.minicc.scanner.MyMiniCCScanner;
 import org.python.util.PythonInterpreter;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -21,7 +22,6 @@ import org.xml.sax.SAXException;
 import bit.minisys.minicc.codegen.MiniCCCodeGen;
 import bit.minisys.minicc.icgen.MiniCCICGen;
 import bit.minisys.minicc.optimizer.MiniCCOptimizer;
-import bit.minisys.minicc.scanner.MiniCCScanner;
 import bit.minisys.minicc.semantic.MiniCCSemantic;
 import bit.minisys.minicc.parser.MiniCCParser;
 
@@ -106,6 +106,7 @@ public class MiniCCompiler {
 					method.invoke(c.newInstance(), cFile, ppOutFile);
 				}else{
 					MiniCCPreProcessor prep = new MiniCCPreProcessor();
+					System.out.println("pp here");
 					prep.run(cFile, ppOutFile);
 				}
 			}else if(pp.type.equals("python")){
@@ -120,12 +121,14 @@ public class MiniCCompiler {
 		
 		if(scanning.skip.equals("false")){
 			if(scanning.type.equals("java")){
+				System.out.println(scanning.path);
 				if(!scanning.path.equals("")){
 					Class<?> c = Class.forName(scanning.path);
 					Method method = c.getMethod("run", String.class, String.class);
 					method.invoke(c.newInstance(), ppOutFile, scOutFile);
 				}else{
-					MiniCCScanner sc = new MiniCCScanner();
+					MyMiniCCScanner sc = new MyMiniCCScanner();
+					System.out.println("here");
 					sc.run(ppOutFile, scOutFile);
 				}
 			}else if(pp.type.equals("python")){
@@ -244,7 +247,7 @@ public class MiniCCompiler {
 	}
 	
 	private void run(String iFile, String oFile, String path) throws IOException{
-		Runtime rt = Runtime.getRuntime();//¸ñÊ½£ºexeÃû ÊäÈëÎÄ¼ş Êä³öÎÄ¼ş
+		Runtime rt = Runtime.getRuntime();//æ ¼å¼ï¼šexeå è¾“å…¥æ–‡ä»¶ è¾“å‡ºæ–‡ä»¶
 		Process p = rt.exec(path + " " + iFile + " " + oFile);
 		try {
 			p.wait();
@@ -255,7 +258,7 @@ public class MiniCCompiler {
 		
 	}
 	private void runPy(String iFile, String oFile, String path) throws IOException{
-		PythonInterpreter pyi = new PythonInterpreter();//¸ñÊ½£ºPython½Å±¾Ãû ÊäÈëÎÄ¼ş Êä³öÎÄ¼ş
+		PythonInterpreter pyi = new PythonInterpreter();//æ ¼å¼ï¼šPythonè„šæœ¬å è¾“å…¥æ–‡ä»¶ è¾“å‡ºæ–‡ä»¶
 		pyi.exec(path + " " + iFile + " " + oFile);
 	}
 }

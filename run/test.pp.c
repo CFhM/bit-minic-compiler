@@ -7,6 +7,7 @@ int main ( int a , int b ) {
  float f = 14.23e9f ; 
  f / = 12e4 ; 
  const int maxn = 1e9 + 7 ; 
+ 
  const double eps = 1e - 6 ; 
  double d = 0x.099P - 12 ; 
  double _ = 3.1415926535 ; 

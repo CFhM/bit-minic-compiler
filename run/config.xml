@@ -3,7 +3,7 @@
   <phases>
     <phase>
       <phase skip="false" type="java" path="bit.minisys.minicc.pp.MiniCCPreProcessor" name="pp" />
-      <phase skip="true" type="java" path="" name="scanning" />
+      <phase skip="false" type="java" path="bit.minisys.minicc.scanner.MyMiniCCScanner" name="scanning" />
       <phase skip="true" type="java" path="" name="parsing" />
       <phase skip="true" type="java" path="" name="semantic" />
       <phase skip="true" type="java" path="" name="icgen" />
